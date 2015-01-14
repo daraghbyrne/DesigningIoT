@@ -3,7 +3,7 @@
 // -----------------------------------
 
 // name the pins
-int led = D0;
+int ledPin = D0;
 
 // This routine runs only once upon reset
 void setup()
@@ -12,10 +12,10 @@ void setup()
    Spark.function("led", ledControl);
 
    // Configure the pins to be outputs
-   pinMode(led, OUTPUT);
+   pinMode(ledPin, OUTPUT);
 
    // Initialize both the LEDs to be OFF
-   digitalWrite(led, LOW);
+   digitalWrite(ledPin, LOW);
 }
 
 
@@ -41,7 +41,7 @@ int ledControl(String command)
    else return -1;
 
    // write to the appropriate pin
-   digitalWrite(led, state);
+   digitalWrite(ledPin, state);
    return 1;
 }
 
