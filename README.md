@@ -3,6 +3,8 @@ Code Samples from ‘Designing for the Internet of Things’ 2015 course at CMU 
 
 All samples are designed to run on the Spark Core (see Spark.io/start)
 
+They also include Fritzing Diagrams and Parts lists where needed. 
+
 # Getting Started
 
 This includes sample code for extracting the MAC Address of the Spark Core to register it on the CMU network. Connect the Spark to a hotspot (on your phone) or an off campus network to begin.
