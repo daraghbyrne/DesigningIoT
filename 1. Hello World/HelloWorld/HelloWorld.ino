@@ -20,7 +20,6 @@ void setup() {
 
 // This gets called over and over
 void loop() {
-
   // Now let's make this LED blink
 
   // First... On
@@ -32,5 +31,4 @@ void loop() {
   delay(1000);               // Wait for 1000mS = 1 second
 
   // rinse + repeat
-
 }
