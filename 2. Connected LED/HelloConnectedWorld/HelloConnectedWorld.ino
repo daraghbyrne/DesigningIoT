@@ -33,11 +33,11 @@ void loop()
 
 int ledControl(String command)
 {
-   int state = 0;
+   int state = LOW;
 
    // find out the state of the led
-   if(command == "HIGH") state = 1;
-   else if(command == "LOW") state = 0;
+   if(command == "HIGH") state = HIGH;
+   else if(command == "LOW") state = LOW;
    else return -1;
 
    // write to the appropriate pin
