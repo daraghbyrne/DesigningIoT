@@ -1,0 +1,80 @@
+<!DOCTYPE HTML>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css" />
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+  
+<body>
+    <h3>Dim Light</h3> <br><br>
+
+    <br><br>
+	
+	<p>
+	  <label for="amount">Brightness:</label>
+	  <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
+	</p>
+
+	<div id="slider-range-min"></div>
+
+    <br><br>
+	
+	
+	<hr/>
+</br>
+	
+	<em>Device ID: </em><input type="text" id="deviceIDInput" onKeyUp="return handleDeviceIDChange()" ></input>
+	<br/>
+	<em>Access Token: </em><input type="text" id="accessTokenInput" onKeyUp="return handleAccessTokenChange()" ></input>
+	<br/>
+
+
+    <script type="text/javascript">
+      var deviceID    = "<< device id >>";
+      var accessToken = "<< access token >>";
+	  
+	  
+      var setFunc = "led";
+
+	  $( document ).ready(function() {
+
+		  $( "#slider-range-min" ).slider({
+		        range: "min",
+		        value: 0,
+		        min: 0,
+		        max: 255,
+		        slide: function( event, ui ) {
+		          $( "#amount" ).val( "" + ui.value );
+				  setLEDBrightness( ui.value );
+		        }
+		      });
+		      $( "#amount" ).val( "$" + $( "#slider-range-min" ).slider( "value" ) );
+
+		  
+	      $("#deviceIDInput").val(  deviceID );
+	      $("#accessTokenInput").val(  accessToken );
+	  });
+
+
+	  function handleDeviceIDChange(){
+		  deviceID = $("#deviceIDInput").val().trim();
+		  return ;
+	  }
+
+	  function handleAccessTokenChange(){
+		  accessToken = $("#accessTokenInput").val().trim();
+		  return ;
+	  }
+
+      function setLEDBrightness( brightness ) {
+		  var requestURL = "https://api.spark.io/v1/devices/" + deviceID + "/" + setFunc + "/";
+			$.post( requestURL, { params: "" + brightness , access_token: accessToken });
+      }
+
+
+
+
+    </script>
+</body>
+</html>

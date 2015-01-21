@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+<body>
+    <P>Turn Light <br><br>
+
+    <br><br>
+    <button id="onButton" onclick="turnLEDOn()">ON</button>
+    <button id="offButton"  onclick="turnLEDOff()">OFF</button>
+    <br><br>
+	
+	
+	<hr/>
+</br>
+	
+	<em>Device ID: </em><input type="text" id="deviceIDInput" onKeyUp="return handleDeviceIDChange()" ></input>
+	<br/>
+	<em>Access Token: </em><input type="text" id="accessTokenInput" onKeyUp="return handleAccessTokenChange()" ></input>
+	<br/>
+
+
+    <script type="text/javascript">
+      var deviceID    = "<< device id >>";
+      var accessToken = "<< access token >>";
+	  
+      var setFunc = "led";
+
+	  $( document ).ready(function() {
+	      $("#deviceIDInput").val(  deviceID );
+	      $("#accessTokenInput").val(  accessToken );
+	  });
+
+
+	  function handleDeviceIDChange(){
+		  deviceID = $("#deviceIDInput").val().trim();
+		  return ;
+	  }
+
+	  function handleAccessTokenChange(){
+		  accessToken = $("#accessTokenInput").val().trim();
+		  return ;
+	  }
+
+      function turnLEDOn() {
+		  var requestURL = "https://api.spark.io/v1/devices/" + deviceID + "/" + setFunc + "/";
+			$.post( requestURL, { params: "HIGH", access_token: accessToken });
+      }
+
+      function turnLEDOff() {
+		  var requestURL = "https://api.spark.io/v1/devices/" +deviceID + "/" + setFunc + "/";
+			$.post( requestURL, { params: "LOW", access_token: accessToken });
+      }
+
+
+    </script>
+</body>
+</html>

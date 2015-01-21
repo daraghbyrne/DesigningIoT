@@ -1,0 +1,76 @@
+<!DOCTYPE HTML>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css" />
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+  
+<body>
+    <h3>Light Levels from Photo Resistor / Photo Cell</h3> <br><br>
+	<p>Reads every 5 seconds </p>
+    <br><br>
+	
+	<p>
+	  <label for="amount">Light Levels:</label>
+	  <br/>
+	  <span id="amount" ></span>
+	</p>
+
+    <br><br>
+	
+	
+	<hr/>
+</br>
+	
+	<em>Device ID: </em><input type="text" id="deviceIDInput" onKeyUp="return handleDeviceIDChange()" ></input>
+	<br/>
+	<em>Access Token: </em><input type="text" id="accessTokenInput" onKeyUp="return handleAccessTokenChange()" ></input>
+	<br/>
+
+
+
+    <script type="text/javascript">
+      var deviceID    = "<< device id >>";
+      var accessToken = "<< access token >>";
+
+	  
+      var getFunc = "light";
+
+	  $( document ).ready(function() {
+
+	      $("#deviceIDInput").val(  deviceID );
+	      $("#accessTokenInput").val(  accessToken );
+	  });
+	  
+	  
+	  window.setInterval(function() {
+	          requestURL = "https://api.spark.io/v1/devices/" + deviceID + "/" + getFunc + "/?access_token=" + accessToken;
+	          $.getJSON(requestURL, function(json) {
+	                   document.getElementById("amount").innerHTML = json.result + " ";
+	                   document.getElementById("amount").style.fontSize = "28px";
+				   });
+	        }, 5000);
+
+
+	  function handleDeviceIDChange(){
+		  deviceID = $("#deviceIDInput").val().trim();
+		  return ;
+	  }
+
+	  function handleAccessTokenChange(){
+		  accessToken = $("#accessTokenInput").val().trim();
+		  return ;
+	  }
+
+      function setLEDBrightness( brightness ) {
+		  var requestURL = "https://api.spark.io/v1/devices/" + deviceID + "/" + setFunc + "/";
+			$.post( requestURL, { params: "" + brightness , access_token: accessToken });
+      }
+
+
+
+
+    </script>
+</body>
+</html>
