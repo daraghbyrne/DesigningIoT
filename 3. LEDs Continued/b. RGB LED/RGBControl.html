@@ -1,0 +1,132 @@
+<!DOCTYPE HTML>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css" />
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+  
+<body>
+    <h3>Control Light Color</h3> <br><br>
+
+    <br><br>
+	
+	<p>
+	  <label for="amount">Red:</label>
+	  <input type="text" id="r_amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
+	</p>
+
+	<div id="slider-range-red"></div>
+
+    <br><br>
+
+	<p>
+	  <label for="amount">Green:</label>
+	  <input type="text" id="g_amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
+	</p>
+
+	<div id="slider-range-green"></div>
+
+    <br><br>
+
+
+	<p>
+	  <label for="amount">Blue:</label>
+	  <input type="text" id="b_amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
+	</p>
+
+	<div id="slider-range-blue"></div>
+
+    <br><br>
+	
+	
+	<hr/>
+</br>
+	
+	<em>Device ID: </em><input type="text" id="deviceIDInput" onKeyUp="return handleDeviceIDChange()" ></input>
+	<br/>
+	<em>Access Token: </em><input type="text" id="accessTokenInput" onKeyUp="return handleAccessTokenChange()" ></input>
+	<br/>
+
+
+    <script type="text/javascript">
+      var deviceID    = "<< device id >>";
+      var accessToken = "<< access token >>";
+	  
+	  
+	  var r = 255;
+	  var g = 255;
+	  var b = 255;
+	  
+      var setFunc = "led";
+
+	  $( document ).ready(function() {
+
+		  $( "#slider-range-red" ).slider({
+		        range: "min",
+		        value: 0,
+		        min: 0,
+		        max: 255,
+		        slide: function( event, ui ) {
+		          $( "#r_amount" ).val( "" + ui.value );
+				  r = ui.value
+				  setLEDBrightness(  );
+		        }
+		      });
+		      $( "#r_amount" ).val( "$" + $( "#slider-range-red" ).slider( "value" ) );
+
+		  $( "#slider-range-green" ).slider({
+		        range: "min",
+		        value: 0,
+		        min: 0,
+		        max: 255,
+		        slide: function( event, ui ) {
+		          $( "#g_amount" ).val( "" + ui.value );
+				  g = ui.value;
+				  setLEDBrightness(  );
+		        }
+		      });
+		      $( "#g_amount" ).val( "$" + $( "#slider-range-green" ).slider( "value" ) );
+
+		  $( "#slider-range-blue" ).slider({
+		        range: "min",
+		        value: 0,
+		        min: 0,
+		        max: 255,
+		        slide: function( event, ui ) {
+		          $( "#b_amount" ).val( "" + ui.value );
+				  b = ui.value;
+				  setLEDBrightness(  );
+		        }
+		      });
+		      $( "#b_amount" ).val( "$" + $( "#slider-range-blue" ).slider( "value" ) );
+
+	  	  		  
+		  
+		  
+	      $("#deviceIDInput").val(  deviceID );
+	      $("#accessTokenInput").val(  accessToken );
+	  });
+
+
+	  function handleDeviceIDChange(){
+		  deviceID = $("#deviceIDInput").val().trim();
+		  return ;
+	  }
+
+	  function handleAccessTokenChange(){
+		  accessToken = $("#accessTokenInput").val().trim();
+		  return ;
+	  }
+
+      function setLEDBrightness( brightness ) {
+		  var requestURL = "https://api.spark.io/v1/devices/" + deviceID + "/" + setFunc + "/";
+			$.post( requestURL, { params: "" + r + "," + g + "," + b + "" , access_token: accessToken });
+      }
+
+
+
+
+    </script>
+</body>
+</html>
