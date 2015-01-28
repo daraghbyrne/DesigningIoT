@@ -9,10 +9,10 @@ int potVal;
 
 void setup() {
 
-  pinMode( potPin , INPUT_PULLUP); // sets pin as input
+  //pinMode( potPin , INPUT_PULLUP); // sets pin as input
 
   myServo.attach( servoPin );
-  myServo.write(0); // start with servo fully clockwise (down pushup)
+  myServo.write( 1 ); // start with servo fully clockwise (down pushup)
 
   Spark.variable(  "pot" , &potVal , INT );  // From all devices!
   Spark.variable(  "servoPosition" , &servoPos , INT );  // From all devices!
@@ -28,23 +28,24 @@ void setup() {
 void loop()
 {
   // read the value
-  int val = analogRead( potPin );
+  int reading = analogRead(potPin);
 
-  // convert to a servo positio
+  // convert to a servo position
   // 0 - 180
   int converted = map( potVal, 0, 4094, 1 , 180 );
 
   // if the position has changed
-  if( val < potVal - 100 || val > potVal + 100 )
+  // but account for a little flucuation in power...
+  if( reading < potVal - 50 || reading > potVal + 50 )
   {
       // then announce it
-      //publishServoChange( converted );
-      // wait 500 ms
-      delay( 500 );
+      publishServoChange( converted );
+      // wait 2000 ms
+      delay( 2000 );
   }
 
-  servoPos = converted;
-  potVal = val;
+  // update the reading
+  potVal = reading;
 
   // wait a few seconds
   delay( 100 );
@@ -57,6 +58,10 @@ void handleServoChange(const char *event, const char *data)
 
   int val = atoi( data ) ;
   val = constrain( val, 0, 180 );
+
+  // if it's already there... do nothing.
+  if( val == servoPos ) return;
+
   // move the servo to the new position
   myServo.write( val );
   servoPos = val;
