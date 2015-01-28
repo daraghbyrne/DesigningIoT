@@ -41,14 +41,14 @@ void loop()
       // then announce it
       publishServoChange( converted );
       // wait 2000 ms
-      delay( 2000 );
+      delay( 3000 );
   }
 
   // update the reading
   potVal = reading;
 
   // wait a few seconds
-  delay( 100 );
+  delay( 250 );
 }
 
 void handleServoChange(const char *event, const char *data)
@@ -57,7 +57,10 @@ void handleServoChange(const char *event, const char *data)
   if (!data) return;
 
   int val = atoi( data ) ;
-  val = constrain( val, 0, 180 );
+
+  if( !val ) return;
+
+  val = constrain( val, 1, 180 );
 
   // if it's already there... do nothing.
   if( val == servoPos ) return;
