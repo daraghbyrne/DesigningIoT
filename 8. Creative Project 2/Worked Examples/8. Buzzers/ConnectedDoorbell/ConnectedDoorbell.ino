@@ -14,6 +14,7 @@ int melody[] = { 440, 494, 131 };
 // note durations: 4 = quarter note, 8 = eighth note, etc.:
 int noteDurations[] = { 4,8,8 };
 
+// Track if the doorbell is playing
 boolean isPlaying = false;
 
 void setup() {
@@ -24,6 +25,7 @@ void setup() {
   // Make sure you use a relatively unique name
   // Anyone in the class can use this to build a connected doorbell.
   Spark.subscribe(  "db2015/doorbell-pushed" , handleDoorbellPush );  // From all devices!
+  // or...
   //Spark.subscribe(  "db2015/doorbell-pushed" , handleDoorbellPush , MY_DEVICES);  // From your devices
   //Spark.subscribe(  "db2015/doorbell-pushed" , handleDoorbellPush , "53ff71066667574831282367");  // From a specific device
 
@@ -59,8 +61,15 @@ void loop()
 void handleDoorbellPush(const char *event, const char *data)
 {
   if( isPlaying == false ){
+    // set is playing to true
+    isPlaying = true;
+    // play the chime
     doDingDong();
   }
+
+  // We're done. Allow another chime to play.
+  isPlaying = false;
+
 }
 
 
@@ -74,7 +83,6 @@ void announceDoorbell()
 
 void doDingDong()
 {
-  isPlaying = true;
   // iterate over the notes of the melody:
   for (int thisNote = 0; thisNote < 8; thisNote++) {
 
@@ -91,5 +99,4 @@ void doDingDong()
     // stop the tone playing:
     noTone(speakerPin);
   }
-  isPlaying = false;
 }

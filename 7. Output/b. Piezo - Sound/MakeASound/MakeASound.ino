@@ -8,6 +8,8 @@ int melody[] = {1908,2551,2551,2273,2551,0,2024,1908}; //C4,G3,G3,A3,G3,0,B3,C4
 int noteDurations[] = {4,8,8,4,4,4,4,4 };
 
 void setup() {
+
+  pinMode( speakerPin, OUTPUT );
   playNotes();
 }
 
