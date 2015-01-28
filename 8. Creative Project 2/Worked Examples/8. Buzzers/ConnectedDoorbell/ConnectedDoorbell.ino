@@ -6,8 +6,10 @@ int buttonPin = D0;
 int val;
 
 // notes in the melody:
-int melody[] = { NOTE_A4, NOTE_B4,NOTE_C3 }; //330, 349, 370, 392, 415, 440 };
-//{ NOTE_C4, NOTE_G3,NOTE_G3, NOTE_A3, NOTE_G3,0, NOTE_B3, NOTE_C4 };
+// include the pitches.h
+// or use the mappings below
+//int melody[] = { NOTE_A4, NOTE_B4,NOTE_C3 };
+int melody[] = { 440, 494, 131 };
 
 // note durations: 4 = quarter note, 8 = eighth note, etc.:
 int noteDurations[] = { 4,8,8 };
@@ -19,31 +21,38 @@ void setup() {
   pinMode( buttonPin , INPUT_PULLUP); // sets pin as input
 
   // Register to receive the doorbellpushed notification
-  //
-  //Spark.subscribe( eventName, handleDoorbellPush); // From all devices
-  Spark.subscribe(  "db-e-doorbell-pushed" , handleDoorbellPush );  // From all devices!
-  //Spark.subscribe(  "db-e-doorbell-pushed" , handleDoorbellPush , MY_DEVICES);  // From your devices
-  //Spark.subscribe(  "db-e-doorbell-pushed" , handleDoorbellPush , "53ff71066667574831282367");  // From a specific device
+  // Make sure you use a relatively unique name
+  // Anyone in the class can use this to build a connected doorbell.
+  Spark.subscribe(  "db2015/doorbell-pushed" , handleDoorbellPush );  // From all devices!
+  //Spark.subscribe(  "db2015/doorbell-pushed" , handleDoorbellPush , MY_DEVICES);  // From your devices
+  //Spark.subscribe(  "db2015/doorbell-pushed" , handleDoorbellPush , "53ff71066667574831282367");  // From a specific device
 
-  // play once
-  doDingDong();
+  // uncomment to play at startup
+  //doDingDong();
 
 
 }
 
 void loop()
 {
-
+  // read the value from the button pin
   val = digitalRead( buttonPin );
 
+  // if the button is pushed
   if( val == LOW )
   {
       // The doorbell is pushed
       announceDoorbell();
+
+      // Wait for 2.5 seconds before letting
+      // another event happen
       delay( 2500 );
 
-  }
+    // this is good practice because the API
+    // has a rate limit of 1 event per second
+    // don't go nuts and send loads!
 
+  }
 
 }
 
@@ -59,7 +68,7 @@ void handleDoorbellPush(const char *event, const char *data)
 // Doorbell has been pushed
 void announceDoorbell()
 {
-  Spark.publish( "db-e-doorbell-pushed" );
+  Spark.publish( "db2015/doorbell-pushed" );
 }
 
 
