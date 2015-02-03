@@ -60,7 +60,7 @@ void handleServoChange(const char *event, const char *data)
 
   if( !val ) return;
 
-  val = constrain( val, 1, 180 );
+  val = constrain( val, 1, 179 );
 
   // if it's already there... do nothing.
   if( val == servoPos ) return;
