@@ -22,7 +22,7 @@ void setup()
   pinMode( ledPin , OUTPUT ); // sets pin as output
 
   // Share the LED state
-  Spark.variable( "ledState", &ledState, INT );
+  Particle.variable( "ledState", &ledState, INT );
 
 }
 

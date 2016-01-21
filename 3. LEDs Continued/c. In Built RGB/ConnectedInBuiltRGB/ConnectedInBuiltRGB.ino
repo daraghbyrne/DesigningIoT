@@ -8,8 +8,8 @@ int blueValue = 255;
 
 void setup()
 {
-  //Register our Spark function here
-  Spark.function("led", ledControl);
+  //Register our Particle Core function here
+  Particle.function("led", ledControl);
 
   // We need to say we'll be controlling the RGB led
   RGB.control(true);

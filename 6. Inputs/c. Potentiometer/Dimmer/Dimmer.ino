@@ -19,7 +19,7 @@ void setup(){
 
   // Create a cloud variable of type integer
   // called 'light' mapped to photoCellReading
-  Spark.variable("pot", &potReading, INT);
+  Particle.variable("pot", &potReading, INT);
 }
 
 void loop() {

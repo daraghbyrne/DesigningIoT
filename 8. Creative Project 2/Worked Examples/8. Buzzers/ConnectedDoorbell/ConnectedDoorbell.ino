@@ -24,10 +24,10 @@ void setup() {
   // Register to receive the doorbellpushed notification
   // Make sure you use a relatively unique name
   // Anyone in the class can use this to build a connected doorbell.
-  Spark.subscribe(  "db2015/doorbell-pushed" , handleDoorbellPush );  // From all devices!
+  Particle.subscribe(  "db2015/doorbell-pushed" , handleDoorbellPush );  // From all devices!
   // or...
-  //Spark.subscribe(  "db2015/doorbell-pushed" , handleDoorbellPush , MY_DEVICES);  // From your devices
-  //Spark.subscribe(  "db2015/doorbell-pushed" , handleDoorbellPush , "53ff71066667574831282367");  // From a specific device
+  //Particle.subscribe(  "db2015/doorbell-pushed" , handleDoorbellPush , MY_DEVICES);  // From your devices
+  //Particle.subscribe(  "db2015/doorbell-pushed" , handleDoorbellPush , "53ff71066667574831282367");  // From a specific device
 
   // uncomment to play at startup
   //doDingDong();
@@ -77,7 +77,7 @@ void handleDoorbellPush(const char *event, const char *data)
 // Doorbell has been pushed
 void announceDoorbell()
 {
-  Spark.publish( "db2015/doorbell-pushed" );
+  Particle.publish( "db2015/doorbell-pushed" );
 }
 
 

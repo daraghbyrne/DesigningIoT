@@ -19,11 +19,11 @@ void setup() {
   myServo.attach( A7 );
   myServo.write(0); // start with servo fully clockwise (down pushup)
 
-   //Register our Spark to control the servo
-   Spark.function("servo", servoControl);
+   //Register our Particle Core to control the servo
+   Particle.function("servo", servoControl);
 
   // Keep a cloud variable for the current position
-  Spark.variable(  "servoPosition" , &servoPos , INT );
+  Particle.variable(  "servoPosition" , &servoPos , INT );
 
 
 }

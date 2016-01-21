@@ -36,7 +36,7 @@ void loop()
           // Display it on the LED
           digitalWrite( ledPin, HIGH );
           // Send an event
-          Spark.publish( "tilt-sensor", "tilt detected" );
+          Particle.publish( "tilt-sensor", "tilt detected" );
         }else{
           // Turn th LED off
           digitalWrite( ledPin, LOW );

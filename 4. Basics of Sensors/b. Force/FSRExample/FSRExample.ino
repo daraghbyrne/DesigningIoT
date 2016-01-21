@@ -20,7 +20,7 @@ void setup(){
 
   // Create a cloud variable of type integer
   // called 'light' mapped to photoCellReading
-  Spark.variable("force", &fsrReading, INT);
+  Particle.variable("force", &fsrReading, INT);
 }
 
 void loop() {

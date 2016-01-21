@@ -12,8 +12,8 @@ void setup()
   pinMode( greenPin, OUTPUT);
   pinMode( bluePin, OUTPUT);
 
-  //Register our Spark function here
-  Spark.function("led", ledControl);
+  //Register our Particle Core function here
+  Particle.function("led", ledControl);
 
   // turn them all off...
   analogWrite( redPin, redValue);

@@ -8,7 +8,7 @@ void setup() {
   WiFi.connect();
 
   // Set up a cloud variable to hold the mac address
-  Spark.variable("mac", macstr, STRING);
+  Particle.variable("mac", macstr, STRING);
 
   // Retrieve the network mac address
   WiFi.macAddress(mac);

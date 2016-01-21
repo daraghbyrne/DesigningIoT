@@ -9,13 +9,13 @@ int ledValue = 0;
 // This routine runs only once upon reset
 void setup()
 { 
-   //Register our Spark function to allow
+   //Register our Particle Core function to allow
    // Control of the LED
-   Spark.function("led", ledControl);
+   Particle.function("led", ledControl);
 
    // Make the variable 'ledValue' available through
-   // the Spark cloud as 'brightness'
-   Spark.variable("brightness", &ledValue, INT);
+   // the Particle Core cloud as 'brightness'
+   Particle.variable("brightness", &ledValue, INT);
 
    // Set up pin for output
    pinMode(ledPin, OUTPUT);

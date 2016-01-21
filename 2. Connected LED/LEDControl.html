@@ -42,12 +42,12 @@
 	  }
 
       function turnLEDOn() {
-		  var requestURL = "https://api.spark.io/v1/devices/" + deviceID + "/" + setFunc + "/";
+		  var requestURL = "https://api.particle.io/v1/devices/" + deviceID + "/" + setFunc + "/";
 			$.post( requestURL, { params: "HIGH", access_token: accessToken });
       }
 
       function turnLEDOff() {
-		  var requestURL = "https://api.spark.io/v1/devices/" +deviceID + "/" + setFunc + "/";
+		  var requestURL = "https://api.particle.io/v1/devices/" +deviceID + "/" + setFunc + "/";
 			$.post( requestURL, { params: "LOW", access_token: accessToken });
       }
 

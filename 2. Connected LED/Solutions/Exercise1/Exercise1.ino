@@ -8,8 +8,8 @@ int ledPin = D0;
 // This routine runs only once upon reset
 void setup()
 {
-   //Register our Spark function here
-   Spark.function("led", ledControl);
+   //Register our Particle Core function here
+   Particle.function("led", ledControl);
 
    // Configure the pins to be outputs
    pinMode(ledPin, OUTPUT);

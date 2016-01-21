@@ -11,9 +11,9 @@ double temperatureF = 0.0;
 
 void setup()
 {
-  // Register a Spark variable here
-  Spark.variable("temperature", &temperature, DOUBLE);
-  Spark.variable("temperatureF", &temperatureF, DOUBLE);
+  // Register a Particle Core variable here
+  Particle.variable("temperature", &temperature, DOUBLE);
+  Particle.variable("temperatureF", &temperatureF, DOUBLE);
 
   // Connect the temperature sensor to A0 and configure it
   // to be an input

@@ -44,7 +44,7 @@ void reportTheData() {
     // announce this change by publishing an eent
     if (pirState == LOW) {
       // we have just turned on
-      Spark.publish("designingiot/s15/motion");
+      Particle.publish("designingiot/s15/motion");
       // Update the current state
       pirState = HIGH;
       setLED( pirState );

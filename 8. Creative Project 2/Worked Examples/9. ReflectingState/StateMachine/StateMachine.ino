@@ -14,13 +14,13 @@ void setup() {
   myServo.attach( servoPin );
   myServo.write( 1 ); // start with servo fully clockwise (down pushup)
 
-  Spark.variable(  "pot" , &potVal , INT );  // From all devices!
-  Spark.variable(  "servoPosition" , &servoPos , INT );  // From all devices!
+  Particle.variable(  "pot" , &potVal , INT );  // From all devices!
+  Particle.variable(  "servoPosition" , &servoPos , INT );  // From all devices!
 
 
-  Spark.subscribe(  "db2015/servo-changed" , handleServoChange );  // From all devices!
-  //Spark.subscribe(  "db2015/servo-changed" , handleServoChange , MY_DEVICES);  // From your devices
-  //Spark.subscribe(  "db2015/servo-changed" , handleServoChange , "53ff71066667574831282367");  // From a specific device
+  Particle.subscribe(  "db2015/servo-changed" , handleServoChange );  // From all devices!
+  //Particle.subscribe(  "db2015/servo-changed" , handleServoChange , MY_DEVICES);  // From your devices
+  //Particle.subscribe(  "db2015/servo-changed" , handleServoChange , "53ff71066667574831282367");  // From a specific device
 
 
 }
@@ -80,5 +80,5 @@ void publishServoChange( int position )
   String data = "" ;
   data = data + position;
 
-  Spark.publish( "db2015/servo-changed", "" + data );
+  Particle.publish( "db2015/servo-changed", "" + data );
 }
