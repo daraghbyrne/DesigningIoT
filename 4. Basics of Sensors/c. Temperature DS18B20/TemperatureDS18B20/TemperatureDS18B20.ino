@@ -18,6 +18,7 @@ DallasTemperature dallas(&oneWire);
 // Create a variable that will store the temperature value
 double temperature = 0.0;
 double temperatureF = 0.0;
+#include <math.h>
 
 void setup()
 {
@@ -36,6 +37,8 @@ void loop()
 {
   // Request temperature conversion (traditional)
   dallas.requestTemperatures();
+
+  sin( 23423 );
 
   // get the temperature in Celcius
   float tempC = dallas.getTempCByIndex(0);
