@@ -23,7 +23,7 @@ void setup() {
    Particle.function("servo", servoControl);
 
   // Keep a cloud variable for the current position
-  Particle.variable(  "servoPosition" , &servoPos , INT );
+  Particle.variable(  "servoPos" , &servoPos , INT );
 
 
 }

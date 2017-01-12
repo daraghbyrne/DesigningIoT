@@ -1,5 +1,5 @@
 
-int speakerPin = A0;
+int speakerPin = D0;
 
 // create an array for the notes in the melody:
 int melody[] = {1908,2551,2551,2273,2551,0,2024,1908}; //C4,G3,G3,A3,G3,0,B3,C4

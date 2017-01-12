@@ -1,6 +1,6 @@
 #include "pitches.h"
 
-int speakerPin = A0;
+int speakerPin = D1;
 
 int buttonPin = D0;
 int val;
@@ -24,10 +24,10 @@ void setup() {
   // Register to receive the doorbellpushed notification
   // Make sure you use a relatively unique name
   // Anyone in the class can use this to build a connected doorbell.
-  Particle.subscribe(  "db2015/doorbell-pushed" , handleDoorbellPush );  // From all devices!
+  Particle.subscribe(  "db2017/doorbell-pushed" , handleDoorbellPush );  // From all devices!
   // or...
-  //Particle.subscribe(  "db2015/doorbell-pushed" , handleDoorbellPush , MY_DEVICES);  // From your devices
-  //Particle.subscribe(  "db2015/doorbell-pushed" , handleDoorbellPush , "53ff71066667574831282367");  // From a specific device
+  //Particle.subscribe(  "db2017/doorbell-pushed" , handleDoorbellPush , MY_DEVICES);  // From your devices
+  //Particle.subscribe(  "db2017/doorbell-pushed" , handleDoorbellPush , "53ff71066667574831282367");  // From a specific device
 
   // uncomment to play at startup
   //doDingDong();
@@ -84,7 +84,7 @@ void announceDoorbell()
 void doDingDong()
 {
   // iterate over the notes of the melody:
-  for (int thisNote = 0; thisNote < 8; thisNote++) {
+  for (int thisNote = 0; thisNote < 3; thisNote++) {
 
     // to calculate the note duration, take one second
     // divided by the note type.
